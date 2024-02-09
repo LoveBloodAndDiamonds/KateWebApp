@@ -1,0 +1,14 @@
+[Unit]
+Description=Web application for Kate
+After=network.target
+
+[Service]
+ExecStartPre=/usr/bin/pip3 install poetry
+ExecStartPre=/usr/local/bin/poetry install
+ExecStart=/usr/local/bin/poetry run python3 -m app
+WorkingDirectory=/root/KateWebApp
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
