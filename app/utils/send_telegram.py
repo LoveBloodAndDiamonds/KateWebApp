@@ -12,10 +12,7 @@ async def send_telegram_message(message: str) -> bool:
     """
     try:
         url = f"https://api.telegram.org/bot{Config.BOT_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": Config.TG_ADMIN_ID,
-            "text": message
-        }
+        payload = {"chat_id": Config.TG_ADMIN_ID, "text": message}
         response = requests.post(url, data=payload)
 
         if not response.ok:

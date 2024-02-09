@@ -11,9 +11,10 @@ from starlette.staticfiles import StaticFiles
 from app.database import Database
 from app.utils import send_email, send_telegram_message, parse_data
 
-app = FastAPI()
-templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app = FastAPI()  # Создание обьекта, который обрабатывает запросы на сервер
+templates = Jinja2Templates(directory="templates")  # Указываем директорию, в которой находятся html шаблоны
+app.mount("/static", StaticFiles(directory="static"), name="static")  # Указваем формы, в которой находятся \
+# static файлы
 
 database = Database()  # Создание обьекта который управляет бд
 database.delete_database()  # Удаление старой базы данных каждый раз на запуске
@@ -23,6 +24,11 @@ database.create_table()  # Создание таблицы в базе данн�
 
 @app.get("/", response_class=HTMLResponse)
 async def get_form(request: Request):
+    """
+    Функция, которая возвращает главный шаблон с формой о похищении пришельцами.
+    :param request:
+    :return:
+    """
     return templates.TemplateResponse("index.html", {"request": request})
 
 
@@ -40,7 +46,16 @@ async def handle_form(
         saw_dog: str = Form(...),
         additional: str = Form(None)
 ):
-    form_data = {
+    """
+    Функция, которая принимает данные из формы.
+    Так же, эта функция:
+        - Записывает данные из формы в базу данных
+        - Отправляет сообщение в телеграм
+        - Отправляет сообщение на email
+    Параметры, которые принимает функция берутся из формы, которую пользователь заполнил.
+    :return:
+    """
+    form_data = {  # Собираем словарь из формы
         "name": name,
         "surname": surname,
         "email": email,

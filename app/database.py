@@ -20,7 +20,6 @@ class Database:
     def delete_database(self) -> None:
         """
         Функция удаляет базу данных.
-        :return:
         """
         try:
             self.cursor.execute(f"DROP DATABASE IF EXISTS {Config.DB_DBNAME}")
@@ -31,7 +30,6 @@ class Database:
     def create_database(self) -> None:
         """
         Функция создает базу данных
-        :return:
         """
         self.cursor.execute(f"CREATE DATABASE IF NOT EXISTS {Config.DB_DBNAME}")
         self.conn.database = Config.DB_DBNAME
@@ -83,8 +81,7 @@ class Database:
 
     def get_all(self) -> list[tuple]:
         """
-        Функция получает все данные из таблицы.
-        :return:
+        Функция возвращает все данные из таблицы в виде списка списков.
         """
         get_query = f"SELECT * FROM {Config.DB_DBNAME}"
         self.cursor.execute(get_query)

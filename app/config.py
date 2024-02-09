@@ -9,6 +9,10 @@ load_dotenv()
 
 @dataclass
 class Config:
+    """
+    Класс, который собирает данные из .env файла.
+    """
+
     # Токен телеграм бота
     BOT_TOKEN: str = os.getenv("BOT_TOKEN")
     TG_ADMIN_ID: str = os.getenv("TG_ADMIN_ID")
@@ -25,6 +29,3 @@ class Config:
     DB_USER: str = os.getenv("DB_USER")
     DB_PASSWORD: str = os.getenv("DB_PASSWORD")
     DB_DBNAME: str = os.getenv("DB_DBNAME")
-
-    # assert all([BOT_TOKEN, EMAIL_PASSWORD, EMAIL_LOGIN, DB_HOST, DB_USER, DB_PASSWORD, DB_DBNAME]), \
-    #     "Вы не заполнили все данные в .env"
