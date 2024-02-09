@@ -40,5 +40,23 @@ git clone https://github.com/LoveBloodAndDiamonds/YanSQLAdminAPI.git
 Далее нужно запустить программу через .service
 
 ### Как запускать и перезапускать программу после установки
+```shell
+mv kate_web_app.service /etc/systemd/system/
+```
+```shell
+sudo systemctl daemon-reload
+```
+```shell
+sudo systemctl start kate_web_app
+```
+```shell
+sudo systemctl enable kate_web_app
+```
+```shell
+systemctl status kate_web_app
+```
 
 ### Как зайти в интерактивную оболочку MySQL
+```shell
+mysql -u kate -p
+```
