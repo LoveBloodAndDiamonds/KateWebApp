@@ -3,10 +3,7 @@ Description=Web application for Kate
 After=network.target
 
 [Service]
-ExecStartPre=apt install python3-pip
-ExecStartPre=/usr/bin/pip3 install poetry
-ExecStartPre=/usr/local/bin/poetry install
-ExecStartPre=/usr/local/bin/poetry shell
+ExecStartPre=/usr/bin/pip3 install -r requirements.txt
 ExecStartPre=uvicorn app.__main__:app
 WorkingDirectory=/root/KateWebApp
 Restart=always

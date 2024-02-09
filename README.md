@@ -9,6 +9,9 @@
 ```shell
 sudo apt update & sudo apt upgrade
 ```
+```shell
+apt install python3-pip
+```
 
 ### Установка MySQL
 ```shell
