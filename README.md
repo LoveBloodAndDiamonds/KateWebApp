@@ -18,12 +18,10 @@ apt install python3-pip
 sudo apt install mysql-server
 ```
 ```shell
-sudo mysql_secure_installation
-```
-```shell
 sudo mysql
 ```
 ```sql
+CREATE USER 'kate'@'localhost' IDENTIFIED BY 'kate';
 CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
 ```
 ```sql

@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 ExecStartPre=/usr/bin/pip3 install -r requirements.txt
-ExecStartPre=uvicorn app.__main__:app
+ExecStartPre=uvicorn app.__main__:app --host 0.0.0.0 --port 80
 WorkingDirectory=/root/KateWebApp
 Restart=always
 User=root
