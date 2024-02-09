@@ -1,44 +1,38 @@
-import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-import aiosmtplib
+import smtplib
+
+from app.config import Config
 
 
-async def send_email(form_data: dict) -> None:
+async def send_email(message: str) -> bool:
     """
     Отправка письма на электронную почту
-    :param form_data:  Словарь с данными из формы
-    :return: None
+    :param message: Текст сообщения
+    :return: bool: Возвращаем True, если сообщение было успешно отправлено, иначе False
     """
-    # Авторизация на почтовом сервере
-    smtp = aiosmtplib.SMTP(hostname='smtp.gmail.com', port=465, use_tls=True)
-    await smtp.connect()
-    await smtp.login(os.getenv("GOOGLE_EMAIL"), os.getenv("GOOGLE_PASSWORD"))
+    try:
+        # Авторизация на почтовом сервере
+        server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+        server.ehlo()
+        server.login(Config.EMAIL_LOGIN, Config.EMAIL_PASSWORD)
 
-    # Создание сообщения
-    msg = MIMEMultipart()
-    msg['From'] = 'rentbotcar@gmail.com'
-    msg['To'] = excel_data_updater_obj.get_region_email(region=data['REGION'])
-    msg['Subject'] = 'Заявка на аренду!'
+        # Создание сообщения
+        msg = MIMEMultipart()
+        msg['From'] = Config.EMAIL_LOGIN
+        msg['To'] = Config.ACCEPTOR_EMAIL
+        msg['Subject'] = 'Сообщение о похищении!'
 
-    # Создание текста сообщения
-    body = f"""
-    Регион:                 {data['REGION']}
-    Имя пользователя:       {data['USER_REAL_NAME']}
-    Номер телефона:         {data['PHONE_NUMBER']}
-    Дата начала аренды:     {data['START_DATE']}
-    Дата окончания аренды:  {data['END_DATE']}
-    Кол-во дней аренды:     {data['RENT_DAYS']}
-    Класс авто:             {data['CAR_CLASS'][1]}
-    Модель авто:            {data['CAR_MODEL']}
-    Стоимость аренды:       {data['RENT_PRICE']} rub.
+        msg.attach(MIMEText(message, 'plain'))
 
-    """
-    msg.attach(MIMEText(body, 'plain'))
+        # Отправка сообщения
+        server.send_message(msg)
 
-    # Отправка сообщения
-    await smtp.send_message(msg)
+        # Закрытие соединения с почтовым сервером
+        server.quit()
 
-    # Закрытие соединения с почтовым сервером
-    await smtp.quit()
+        return True
+    except Exception as e:
+        print(e)
+        return False

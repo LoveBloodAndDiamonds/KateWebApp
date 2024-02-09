@@ -63,7 +63,8 @@ class Database:
         Функция добавляет запись в таблицу.
         """
         insert_query = f"""
-        INSERT INTO {Config.DB_DBNAME} (name, surname, email, date, duration, number, description, experience, saw_dog, additional)
+        INSERT INTO {Config.DB_DBNAME} (name, surname, email, date, duration, number, description, experience,
+        saw_dog, additional)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         self.cursor.execute(insert_query, (
@@ -80,14 +81,14 @@ class Database:
         ))
         self.conn.commit()
 
-    def get_all(self):
+    def get_all(self) -> list[tuple]:
         """
         Функция получает все данные из таблицы.
         :return:
         """
-        q = f"SELECT * FROM {Config.DB_DBNAME}"
-        self.cursor.execute(q)
-        print(self.cursor.fetchall())
+        get_query = f"SELECT * FROM {Config.DB_DBNAME}"
+        self.cursor.execute(get_query)
+        return self.cursor.fetchall()
 
     def close(self) -> None:
         """

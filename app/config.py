@@ -11,11 +11,14 @@ load_dotenv()
 class Config:
     # Токен телеграм бота
     BOT_TOKEN: str = os.getenv("BOT_TOKEN")
-    TG_ADMIN_ID: str = os.getenv("ADMIN_ID")
+    TG_ADMIN_ID: str = os.getenv("TG_ADMIN_ID")
 
     # Данные от почты
     EMAIL_LOGIN: str = os.getenv("EMAIL_LOGIN")
     EMAIL_PASSWORD: str = os.getenv("EMAIL_PASSWORD")
+
+    # email получателя
+    ACCEPTOR_EMAIL: str = os.getenv("ACCEPTOR_EMAIL")
 
     # Данные базы данных
     DB_HOST: str = os.getenv("DB_HOST", "localhost")
