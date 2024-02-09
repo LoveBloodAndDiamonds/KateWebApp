@@ -35,7 +35,7 @@ EXIT;
 
 ### Установка программы
 ```shell
-git clone https://github.com/LoveBloodAndDiamonds/YanSQLAdminAPI.git
+git clone https://github.com/LoveBloodAndDiamonds/KateWebApp.git
 ```
 Далее нужно запустить программу через .service
 
