@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abduction Report</title>
+</head>
+<body>
+    <h1>Космические пришельцы похищали меня - сообщение о похищении</h1>
+    <p>Расскажите вашу историю похищения космическими пришельцами</p>
+    <form action="/submit-form" method="post">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="surname">Фамилия:</label>
+        <input type="text" id="surname" name="surname" required><br><br>
+
+        <label for="email">Ваш адрес электронной почты:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="date">Когда это произошло:</label>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="duration">Как долго вы отсутствовали:</label>
+        <input type="text" id="duration" name="duration" required><br><br>
+
+        <label for="number">Сколько их было:</label>
+        <input type="number" id="number" name="number" required><br><br>
+
+        <label for="description">Опишите их:</label>
+        <input type="text" id="description" name="description" required><br><br>
+
+        <label for="experience">Что они делали с вами:</label>
+        <input type="text" id="experience" name="experience" required><br><br>
+
+        <label>Видели ли вы мою собаку Фэнга:</label>
+        <input type="radio" id="saw_dog_yes" name="saw_dog" value="yes">
+        <label for="saw_dog_yes">Да</label>
+        <input type="radio" id="saw_dog_no" name="saw_dog" value="no">
+        <label for="saw_dog_no">Нет</label><br><br>
+
+        <img src="/static/dog.png" alt="Фэнг"><br><br>
+
+        <label for="additional">Дополнительная информация:</label>
+        <input type="text" id="additional" name="additional"><br><br>
+
+        <button type="submit">Сообщить о похищении</button>
+    </form>
+</body>
+</html>
