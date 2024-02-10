@@ -5,6 +5,11 @@
 
 # Инструкция по установке:
 
+Подключиться к серверу:
+```shell
+ssh root@<ip>
+```
+
 ### Обновление пакетов сервера
 ```shell
 sudo apt update & sudo apt upgrade

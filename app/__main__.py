@@ -68,7 +68,12 @@ async def handle_form(
         "additional": additional
     }
 
-    database.insert_data(form_data)  # Добавляем запись в бд
+    try:
+        database.insert_data(form_data)  # Добавляем запись в бд
+        db_result = True
+    except Exception as e:
+        print(e)
+        db_result = e
 
     message: str = await parse_data(form_data)  # Конструируем сообщение из полученных данных
     email_result: bool = await send_email(message)  # Отправлять сообщение email
@@ -83,5 +88,6 @@ async def handle_form(
         "saw_dog": "Да" if saw_dog == 'yes' else "Нет",
         "email": email,
         "email_result": "Да" if email_result else "Нет",
-        "telegram_result": "Да" if telegram_result else "Нет"
+        "telegram_result": "Да" if telegram_result else "Нет",
+        "db_result": "Да" if db_result is True else f"Нет. Ошибка: {db_result}"
     })
