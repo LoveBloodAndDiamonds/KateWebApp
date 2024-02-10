@@ -3,8 +3,8 @@ Description=Web application for Kate
 After=network.target
 
 [Service]
-ExecStartPre=/usr/bin/pip3 install -r requirements.txt
-ExecStart=/usr/bin/uvicorn app.__main__:app --host 0.0.0.0 --port 80
+ExecStartPre=pip3 install -r requirements.txt
+ExecStart=uvicorn app.__main__:app --host 0.0.0.0 --port 80
 WorkingDirectory=/root/KateWebApp
 Restart=always
 User=root
